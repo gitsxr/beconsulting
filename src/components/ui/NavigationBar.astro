@@ -35,7 +35,7 @@ const savedNavActions = navActions.map((action) => ({
 }))
 ---
 
-<header class="header">
+<header id="header-nav" class="fixed top-0 z-50 w-full px-6 py-4">
 	<div class="header__container">
 		<nav aria-label="main navigation" role="navigation" class="header__nav">
 			<!-- Logo -->
@@ -121,6 +121,17 @@ const savedNavActions = navActions.map((action) => ({
 	.header {
 		@apply sticky top-0 z-20 w-full animate-fadeInShadowLight [animation-range:0%_20rem] [animation-timeline:scroll()] before:absolute after:absolute after:left-0 after:top-full after:z-10 after:block after:h-px after:w-full lg:after:hidden dark:animate-fadeInShadowDark dark:[animation-range:0%_20rem] dark:[animation-timeline:scroll()];
 	}
+
+	@keyframes blur {
+		to {
+			box-shadow:
+				0px 5px 50px -5px rgba(0, 0, 0, 0.1),
+				0px 0px 0 1px rgba(0, 0, 0, 0.3);
+			background: rgba(0, 0, 0, 0.3);
+			backdrop-filter: blur(10px);
+		}
+	}
+
 	.header:before {
 		@apply block h-full w-full bg-white/90 lg:backdrop-blur-sm dark:bg-neutral-900/90;
 	}
@@ -177,5 +188,21 @@ const savedNavActions = navActions.map((action) => ({
 	}
 	.header__actions {
 		@apply fixed bottom-0 left-0 hidden w-full items-center justify-between gap-4 border-t border-neutral-100 bg-white px-6 py-4 lg:relative lg:ml-auto lg:flex lg:w-auto lg:border-none lg:bg-transparent lg:px-0 lg:py-0 dark:border-neutral-800 dark:bg-neutral-950 lg:dark:bg-transparent [.header\_\_menu--open~&]:flex;
+	}
+
+	#header-nav {
+		animation: blur linear both;
+		animation-timeline: scroll();
+		animation-range: 0 500px;
+	}
+
+	@keyframes blur {
+		to {
+			box-shadow:
+				0px 5px 50px -5px rgba(0, 0, 0, 0.1),
+				0px 0px 0 1px rgba(0, 0, 0, 0.3);
+			background: rgba(0, 0, 0, 0.3);
+			backdrop-filter: blur(10px);
+		}
 	}
 </style>
